@@ -88,6 +88,10 @@ export default {
       const customIcons = this.mergedOptions.iconOverrides;
       if (this.mergedOptions.addedlinks === undefined) {
         this.mergedOptions.hideModules.addedlinks = true;
+      } else {
+        if (this.mergedOptions.addedlinks.length === 0) {
+          this.mergedOptions.hideModules.addedlinks = true;
+        }
       }
       return modules
         .filter(
