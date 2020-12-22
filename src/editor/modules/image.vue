@@ -1,12 +1,35 @@
 <template>
-    <Dropzone
-        :options="dropzoneOptions"
-        :id="_uid+'vwdropzone'"
-        ref="dropzone"
-        @vdropzone-success="fileUploaded"
-        @vdropzone-file-added="fileAdded"
-        >
-    </Dropzone>
+    <div>
+        <div v-if="altImages">
+            <div style="float:left; width:50%;">
+                <p>Images on file</p>
+                <div v-for="(image, idx) in altImages" :key="idx">
+                    <!-- needs better css and scrollable div -->
+                    <img :src="image" border="0" @click="insertAlt(image)" style="max-width: 100px; float:left;" />
+                </div>
+                <span style="clear:both;" />
+            </div>
+            <div style="float:right; width:50%;">
+            <Dropzone
+                :options="dropzoneOptions"
+                :id="_uid+'vwdropzone'"
+                ref="dropzone"
+                @vdropzone-success="fileUploaded"
+                @vdropzone-file-added="fileAdded"
+                >
+            </Dropzone>
+            </div>
+        </div>
+        <Dropzone
+            v-else
+            :options="dropzoneOptions"
+            :id="_uid+'vwdropzone'"
+            ref="dropzone"
+            @vdropzone-success="fileUploaded"
+            @vdropzone-file-added="fileAdded"
+            >
+        </Dropzone>
+    </div>
 </template>
 
 <script>
@@ -30,7 +53,17 @@ export default {
         uploadURL () {
             return this.options.image.uploadURL;
         },
-
+        altImages () {
+            let ret = null;
+            var alts = this.options.imagesOnFile;
+            if (alts != undefined) {
+                var listed = alts || [];
+                if (listed.length > 0) {
+                    ret = alts;
+                }
+            }
+            return ret
+        },
         dropzoneOptions () {
           return {
             // custom dropzone options
@@ -47,6 +80,9 @@ export default {
     },
 
     methods: {
+        insertAlt (image) {
+            this.$emit("exec", "insertHTML", `<img src=${image}>`);
+        },
         fileUploaded (file, r) {
             if (r)
                 this.$emit("exec", "insertHTML", `<img src=${r}>`);

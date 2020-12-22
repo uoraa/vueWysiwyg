@@ -40,7 +40,9 @@ import table from "./modules/table.vue";
 import removeFormat from "./modules/removeFormat.js";
 
 import separator from "./modules/separator.js";
-import addedlinks from "./examples/addedlinks";
+import addedlinks from "./modules/addedlinks";
+import addShortHtml from "./modules/shorthtml";
+import templateHtml from "./modules/template";
 
 const modules = [
   bold, italic, underline, separator,
@@ -48,8 +50,9 @@ const modules = [
   headings, hyperlink, code,
   list_ordered, list_unordered, separator,
   image, table, separator,
-  removeFormat, addedlinks
+  removeFormat, addedlinks, addShortHtml, templateHtml
 ];
+// console.log(modules);
 
 export default {
   model: {
@@ -82,10 +85,27 @@ export default {
   computed: {
     mergedOptions() {
       return { ...bus.options, ...this.options }
+      // console.log(this.modules);
     },
 
     modules() {
       const customIcons = this.mergedOptions.iconOverrides;
+      if (!this.mergedOptions.templates) {
+        this.mergedOptions.hideModules.template = true;
+      } else {
+        if (this.mergedOptions.templates.length === 0) {
+          this.mergedOptions.hideModules.template = true;
+        }
+      }
+
+      if (!this.mergedOptions.addShortHtml) {
+        this.mergedOptions.hideModules.shorthtml = true;
+      } else {
+        if (this.mergedOptions.addShortHtml.length === 0) {
+          this.mergedOptions.hideModules.shorthtml = true;
+        }
+      }
+
       if (this.mergedOptions.addedlinks === undefined) {
         this.mergedOptions.hideModules.addedlinks = true;
       } else {
@@ -197,6 +217,7 @@ export default {
 
     onFocus() {
       document.execCommand("defaultParagraphSeparator", false, this.mergedOptions.paragraphSeparator)
+
     },
 
     onContentBlur() {
@@ -256,8 +277,8 @@ export default {
 
 <style lang="stylus">
 $offwhite = #f6f6f6
-$buttonWidth = 42px
-$buttonHeight = 42px
+$buttonWidth = 32px
+$buttonHeight = 32px
 $svgSize = 16px
 
 .editr
@@ -358,7 +379,7 @@ $svgSize = 16px
         max-width 100%
 
     table
-        width 100%
+        /* width 100% */
         border-collapse collapse
 
         th

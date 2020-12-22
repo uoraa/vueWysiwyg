@@ -45,7 +45,6 @@ export default {
     },
 
     exec() {
-      // console.log(arguments);
       this.$parent.exec.apply(null, arguments)
     },
 
@@ -60,9 +59,9 @@ export default {
         }
       }
 
-      if (this.module.action !== undefined)
+      if (this.module.action !== undefined) {
         this.exec.apply(null, this.module.action);
-
+      }
       else if (this.module.customAction !== undefined) {
         this.module.customAction(bus.utils).forEach(a => this.exec.apply(null, a));
       } else if (

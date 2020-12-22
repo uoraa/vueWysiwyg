@@ -42,6 +42,14 @@ All keys are optional.
     dropzoneOptions: {}
   },
 
+  // add images on file from front-end
+  // splits upload dashboard in half and displays the dropzone on the right with the on file images on the left.
+  // needs css work done
+  imagesOnFile: [
+    'http://placehold.it/600x200/',
+    'http://placehold.it/300x200/',
+  ]
+
   // limit content height if you wish. If not set, editor size will grow with content.
   maxHeight: "500px",
 
@@ -62,6 +70,21 @@ All keys are optional.
     }
   ],
 
+  // insert short html clips
+  addShortHtml: [
+    {
+      name: 'coolness',
+      html: '<strong>cool html</strong>'
+    }
+  ]
+
+  // insert Templates
+  templates: [
+    {
+      name: 'template name',
+      html: 'template html',
+    }
+  ]
 }
 ```
 Available Modules:
