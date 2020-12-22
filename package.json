@@ -9,6 +9,8 @@
     "html",
     "editor"
   ],
+  "author": "uoraa",
+  "license": "MIT",
   "main": "dist/vueWysiwyg.js",
   "style": "dist/vueWysiwyg.css",
   "scripts": {
@@ -70,8 +72,6 @@
     "type": "git",
     "url": "git+https://github.com/uoraa/vueWysiwyg.git"
   },
-  "author": "uoraa",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/uoraa/vueWysiwyg/issues"
   },

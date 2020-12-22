@@ -88,4 +88,3 @@ Note on the image upload API endpoint:
 
 
 Edits to the [original](https://github.com/chmln/vue-wysiwyg) inspired by: [itsyub](https://github.com/itsyub/vue-wysiwyg-lite)
-
