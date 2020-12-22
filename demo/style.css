@@ -1,0 +1,187 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper {
+  max-width: 800px;
+  margin: 10em auto;
+}
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+body {
+  font-family: -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen-Sans,
+    Ubuntu,
+    Cantarell,
+    "Helvetica Neue",
+    sans-serif;
+}
+
+
+.editr {
+  border: 1px solid #e4e4e4;
+  width: 100%;
+  position: relative;
+}
+.editr .editr--toolbar.bottom ~.editr--content {
+  padding-bottom: 50px;
+}
+.editr--toolbar {
+  background: #f6f6f6;
+  border-bottom: 1px solid #e4e4e4;
+  position: relative;
+  display: flex;
+  height: 42px;
+}
+.editr--toolbar.bottom {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  border-bottom: 0;
+  border-top: 1px solid #e4e4e4;
+}
+.editr--toolbar a {
+  display: inline-block;
+  width: 42px;
+  max-width: 42px;
+  height: 42px;
+  color: #333;
+  fill: #333;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1;
+}
+.editr--toolbar a:hover {
+  background: rgba(0,0,0,0.1);
+}
+.editr--toolbar a:active {
+  background: rgba(0,0,0,0.2);
+}
+.editr--toolbar a svg {
+  width: 16px;
+  height: 16px;
+  margin: 13px auto;
+}
+.editr--toolbar a svg path {
+  fill: inherit;
+}
+.editr--toolbar a.vw-btn-separator {
+  width: 1px;
+  margin: 0 8px;
+}
+.editr--toolbar a.vw-btn-separator:hover {
+  background: initial;
+  cursor: default;
+}
+.editr--toolbar a.vw-btn-separator i.vw-separator {
+  border-left: 1px solid rgba(0,0,0,0.1);
+  height: 100%;
+  position: absolute;
+  width: 1px;
+}
+.editr--toolbar .dashboard {
+  width: 100%;
+  position: absolute;
+  top: 32px;
+  left: 0;
+  text-align: left;
+  padding: 5px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid #f6f6f6;
+  box-sizing: border-box;
+  z-index: 16;
+}
+.editr--toolbar.bottom .dashboard {
+  top: unset;
+  bottom: 100%;
+}
+.editr--content {
+  min-height: 150px;
+  padding: 12px 8px 16px 8px;
+  line-height: 1.33;
+  font-family: inherit;
+  color: inherit;
+  overflow-y: auto;
+}
+.editr--content[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  color: rgba(0,0,0,0.3);
+  display: block; /* For Firefox */
+}
+.editr--content img {
+  max-width: 100%;
+}
+.editr--content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.editr--content table th {
+  text-align: left;
+}
+.editr--content table th,
+.editr--content table td {
+  border: 1px solid #ddd;
+  padding: 2px;
+}
+.editr--content:focus {
+  outline: 0;
+}
+.editr--content ul li,
+.editr--content ol li {
+  list-style-position: inside;
+}
+@media screen and (max-width: 320px) {
+.editr--toolbar a {
+    margin: 0 2px;
+}
+.editr--toolbar a.vw-btn-separator {
+    display: none;
+}
+}
+label[data-v-c9dc79a0] {
+  width: 100%;
+  display: block;
+  float: left;
+  padding: 5px;
+  box-sizing: border-box;
+}
+label span[data-v-c9dc79a0] {
+  padding: 5px;
+  display: inline-block;
+}
+label input[data-v-c9dc79a0] {
+  padding: 5px 5px 5px 10px;
+  border-radius: 2em;
+  border: 1px solid #e4e4e4;
+  height: auto !important;
+}
+button[data-v-c9dc79a0] {
+  background: #333333;
+  border: 0;
+  padding: 5px 10px;
+  border: 1px solid #ffffff;
+  border-radius: 2em;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 100;
+}
+
+
+.form[data-v-ebce4d12] {
+  display: flex;
+  align-content: flex-end;
+}
+.form label[data-v-ebce4d12] {
+  margin-right: 1rem;
+}
