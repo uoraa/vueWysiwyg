@@ -37,6 +37,7 @@ All keys are optional.
   iconOverrides: { "bold": "<i class='your-custom-icon'></i>" },
 
   // if the image option is not set, images are inserted as base64
+  // replace images and set alignments by clicking the image in the editor
   image: {
     uploadURL: "/api/myEndpoint",
     dropzoneOptions: {}
@@ -107,6 +108,7 @@ Available Modules:
  - addShortHtml
  - templates
  - imagesOnFile (passive)
+ - imageUpdate (passive)
 
 Note on the image upload API endpoint:
 - Image is uploaded by `multipart/form-data`

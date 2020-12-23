@@ -1,5 +1,11 @@
 <template lang="pug">
 .editr
+    imageUpdate(
+      v-if="modalVis"
+      :data="modalData"
+      :options="mergedOptions",
+      @returnImage="newImageData"
+    )
     .editr--toolbar(:class="mergedOptions.toolbarPosition")
         Btn(
             v-for="(module,i) in modules",
@@ -12,12 +18,12 @@
         )
 
     .editr--content(ref="content", contenteditable="true", tabindex="1", :placeholder="placeholder")
-
 </template>
 <script>
 import bus from 'src/editor/bus.js';
 import debounce from "debounce";
 import Btn from "./Button.vue";
+import imageUpdate from "./imageUpdate.vue";
 
 import bold from "./modules/bold.js";
 import italic from "./modules/italic.js";
@@ -73,12 +79,14 @@ export default {
   },
 
 
-  components: { Btn },
+  components: { Btn, imageUpdate },
 
   data() {
     return {
       selection: "",
-      selectedNode: null
+      selectedNode: null,
+      modalVis: false,
+      modalData: {},
     }
   },
 
@@ -238,6 +246,37 @@ export default {
     syncHTML() {
       if (this.html !== this.$refs.content.innerHTML)
         this.innerHTML = this.html;
+    },
+    newImageData(value) {
+      this.modalVis = false;
+      var target = value.original;
+      target.src = value.newUrl;
+      target.removeAttribute('align');
+      target.setAttribute('align', value.alignment);
+      console.log(value);
+      this.emit();
+    },
+    clicked(e) {
+      e = e || window.event;
+      var target = e.target || e.srcElement;
+      var alignment = '';
+      if (target.hasAttribute("align")) {
+        alignment = target.getAttribute("align");
+      }
+      var tag = target.tagName.toString();
+      if (tag == 'IMG') {
+        this.modalVis = true;
+        this.modalData = {
+          target: target,
+          src: target.src,
+          alignment: alignment,
+        };
+        // var imgUrl = prompt("New Image Url", "");
+        // if (imgUrl != null) {
+        //   target.src = imgUrl;
+        // }
+        // this.emit();
+      }
     }
   },
 
@@ -246,6 +285,7 @@ export default {
 
     document.addEventListener("click", this.onDocumentClick);
 
+    this.$refs.content.addEventListener("click", this.clicked);
     this.$refs.content.addEventListener("focus", this.onFocus);
     this.$refs.content.addEventListener("input", this.onInput);
     this.$refs.content.addEventListener("keydown", this.onKeyDown);
@@ -270,6 +310,7 @@ export default {
     this.$refs.content.removeEventListener("cut", this.onKeyDown);
     this.$refs.content.removeEventListener("paste", this.onKeyDown);
     this.$refs.content.removeEventListener("focus", this.onFocus);
+    this.$refs.content.removeEventListener("click", this.clicked);
   }
 }
 
@@ -377,6 +418,10 @@ $svgSize = 16px
 
     img
         max-width 100%
+
+    img:hover
+      border: 2px dotted black
+      cursor: context-menu
 
     table
         /* width 100% */
