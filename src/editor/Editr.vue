@@ -49,14 +49,14 @@ import separator from "./modules/separator.js";
 import addedlinks from "./modules/addedlinks";
 import addShortHtml from "./modules/shorthtml";
 import templateHtml from "./modules/template";
+import strikeThrough from "./modules/strikeThrough.js";
 
 const modules = [
-  bold, italic, underline, separator,
-  alignLeft, alignCenter, alignRight, separator,
-  headings, hyperlink, code,
+  headings, separator, bold, italic, underline, strikeThrough, separator,
+  alignLeft, alignCenter, alignRight, separator, hyperlink, code,
   list_ordered, list_unordered, separator,
-  image, table, separator,
-  removeFormat, addedlinks, addShortHtml, templateHtml
+  image, separator, table, separator,
+  removeFormat, separator, addedlinks, addShortHtml, templateHtml
 ];
 // console.log(modules);
 
@@ -232,12 +232,30 @@ export default {
       // save focus to restore it later
       this.selection = this.saveSelection();
     },
+    onImagePaste(e) {
 
+        var image = false;
+        for (let i = 0; i < e.clipboardData.items.length; ++i) {
+          let item = e.clipboardData.items[i];
+          // console.log("kind:", item.kind, "type:", item.type);
+          let type = item.type;
+          if (item.kind == 'file' && type.includes('image')) {
+            image = true;
+          }
+        }
+        if (image == true) {
+          e.preventDefault();
+        }
+
+    },
     onPaste(e) {
       e.preventDefault();
 
       // get a plain representation of the clipboard
       var text = e.clipboardData.getData("text/plain");
+
+      var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+      // console.log(JSON.stringify(items));
 
       // insert that plain text text manually
       document.execCommand("insertHTML", false, text);
@@ -253,7 +271,6 @@ export default {
       target.src = value.newUrl;
       target.removeAttribute('align');
       target.setAttribute('align', value.alignment);
-      console.log(value);
       this.emit();
     },
     clicked(e) {
@@ -295,6 +312,10 @@ export default {
 
     if (this.mergedOptions.forcePlainTextOnPaste === true) {
       this.$refs.content.addEventListener("paste", this.onPaste);
+    }
+
+    if (this.mergedOptions.imagePaste === false) {
+      this.$refs.content.addEventListener("paste", this.onImagePaste);
     }
 
     this.$refs.content.style.maxHeight = this.mergedOptions.maxHeight;

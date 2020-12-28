@@ -51,6 +51,9 @@ All keys are optional.
     'http://placehold.it/300x200/',
   ]
 
+  // disable direct image paste
+  imagePaste: false
+
   // limit content height if you wish. If not set, editor size will grow with content.
   maxHeight: "500px",
 
@@ -92,6 +95,7 @@ Available Modules:
  - bold
  - italic
  - underline
+ - strikethrough
  - justifyLeft
  - justifyCenter
  - justifyRight
@@ -112,7 +116,7 @@ Available Modules:
 
 Note on the image upload API endpoint:
 - Image is uploaded by `multipart/form-data`
-- Your endpoint must respond back with a string, the URL for the image - e.g. `https://static.pexels.com/photos/177809/pexels-photo-177809.jpeg`
+- Your endpoint must respond back with a string, the URL for the image - e.g. `http://placehold.it/600x200/`
 
 
 Edits to the [original](https://github.com/chmln/vue-wysiwyg) inspired by: [itsyub](https://github.com/itsyub/vue-wysiwyg-lite)

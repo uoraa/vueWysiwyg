@@ -38,7 +38,7 @@ export default {
         this.selectedAnchor.innerText = this.title;
         //this.$emit('exec',"insertHTML", this.selectedAnchor.toString())
       } else {
-        this.$emit("exec", "insertHTML", `<a href='${this.url}'>${this.title}</a>`);
+        this.$emit("exec", "insertHTML", `<a target='_blank' href='${this.url}'>${this.title}</a>`);
       }
       this.$parent.closeDashboard();
       this.url = "";

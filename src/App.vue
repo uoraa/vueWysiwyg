@@ -8,10 +8,10 @@ export default {
   name: 'app',
   data() {
     return {
-      msg: `<p>Welcome to <b>vue-wysiwyg</b>!</p>
+      msg: `<p>Welcome to <b>vueWysiwyg</b>!</p>
       <p>
         <br>
-        <img src="https://static.pexels.com/photos/177809/pexels-photo-177809.jpeg">
+        <img src="http://via.placeholder.com/300.jpg">
       </p>
       <br>
       <p>
