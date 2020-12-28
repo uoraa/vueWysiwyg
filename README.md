@@ -116,7 +116,10 @@ Available Modules:
 
 Note on the image upload API endpoint:
 - Image is uploaded by `multipart/form-data`
-- Your endpoint must respond back with a string, the URL for the image - e.g. `http://placehold.it/600x200/`
+- Your endpoint must respond back with a string, the URL for the image - e.g. 
+```js
+ return `http://placehold.it/600x200/`
+```
 
 
 Edits to the [original](https://github.com/chmln/vue-wysiwyg) inspired by: [itsyub](https://github.com/itsyub/vue-wysiwyg-lite)
