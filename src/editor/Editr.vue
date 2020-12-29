@@ -12,6 +12,7 @@
             :module="module",
             :options="mergedOptions",
             :key="module.title + i",
+            :class="'_' + module.title + '_'"
 
             :ref="'btn-'+module.title",
             :title="module.description || ''"
