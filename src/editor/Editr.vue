@@ -276,7 +276,6 @@ export default {
       target.removeAttribute('style');
       var maxWidth = 'max-width: ' + value.maxWidth + 'px;';
       target.setAttribute('style', maxWidth);
-      console.log(target);
       this.emit();
     },
     clicked(e) {
