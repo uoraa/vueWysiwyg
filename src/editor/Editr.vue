@@ -270,31 +270,27 @@ export default {
       var target = value.original;
       target.src = value.newUrl;
       target.removeAttribute('align');
-      target.setAttribute('align', value.alignment);
-      target.removeAttribute('width');
-      target.setAttribute('width', value.width);
-      target.removeAttribute('height');
-      target.setAttribute('height', value.height);
+      if (value.alignment) {
+        target.setAttribute('align', value.alignment);
+      }
+      target.removeAttribute('style');
+      var maxWidth = 'max-width: ' + value.maxWidth + 'px;';
+      target.setAttribute('style', maxWidth);
+      console.log(target);
       this.emit();
     },
     clicked(e) {
       e = e || window.event;
       var target = e.target || e.srcElement;
       var alignment = '';
-      var width = '';
-      var height = '';
+      var maxWidth;
       if (target.hasAttribute("align")) {
         alignment = target.getAttribute("align");
       }
-      if (target.hasAttribute("width")) {
-        width = target.getAttribute("width");
+      if (target.hasAttribute("style")) {
+        maxWidth = parseInt(target.style.maxWidth, 10);
       } else {
-        width = target.naturalWidth;
-      }
-      if (target.hasAttribute("height")) {
-        height = target.getAttribute("height");
-      } else {
-        height = target.naturalHeight;
+        maxWidth = target.naturalWidth;
       }
       var tag = target.tagName.toString();
       if (tag == 'IMG') {
@@ -303,8 +299,7 @@ export default {
           target: target,
           src: target.src,
           alignment: alignment,
-          width: width,
-          height: height,
+          maxWidth: maxWidth,
         };
         // var imgUrl = prompt("New Image Url", "");
         // if (imgUrl != null) {
