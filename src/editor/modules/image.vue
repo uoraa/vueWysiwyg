@@ -1,11 +1,11 @@
 <template>
     <div>
         <div v-if="altImages">
-            <div style="float:left; width:50%;">
+            <div style="float:left; width:50%;" class="imagesOnFile">
                 <p>Images on file</p>
                 <div v-for="(image, idx) in altImages" :key="idx">
                     <!-- needs better css and scrollable div -->
-                    <img :src="image" border="0" @click="insertAlt(image)" style="max-width: 100px; float:left;" />
+                    <img :src="image" border="0" @click="insertAlt(image)" style="max-height: 100px; max-width: 100px; float:left;" />
                 </div>
                 <span style="clear:both;" />
             </div>
@@ -81,6 +81,7 @@ export default {
 
     methods: {
         insertAlt (image) {
+            this.$parent.closeDashboard();
             this.$emit("exec", "insertHTML", `<img src=${image}>`);
         },
         fileUploaded (file, r) {
