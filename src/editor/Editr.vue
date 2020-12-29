@@ -456,6 +456,10 @@ $svgSize = 16px
       border: 2px dotted black
       cursor: context-menu
 
+    a
+        text-decoration underline
+        color blue
+
     table
         /* width 100% */
         border-collapse collapse
