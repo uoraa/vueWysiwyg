@@ -74,7 +74,7 @@ All keys are optional.
     }
   ],
 
-  // insert short html clips
+  // insert short html clips (title: shorthtml)
   addShortHtml: [
     {
       name: 'coolness',
@@ -82,7 +82,7 @@ All keys are optional.
     }
   ]
 
-  // insert Templates
+  // insert Templates (title: template)
   templates: [
     {
       name: 'template name',
@@ -109,7 +109,7 @@ Available Modules:
  - removeFormat
  - separator
  - addedlinks
- - addShortHtml
+ - shorthtml
  - templates
  - imagesOnFile (passive)
  - imageUpdate (passive)
